@@ -6,8 +6,10 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
+      <View style={styles.timerRow}>
         <Timer />
         <Timer />
+        </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -20,4 +22,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  timerRow: {
+    flexDirection: 'row',
+    width: '100%',
+    borderWidth: 1,
+  }
 });

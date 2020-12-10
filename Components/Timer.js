@@ -5,7 +5,6 @@ import {
     Button,
     View,
     TouchableOpacity,
-    ViewPagerAndroid
 } from 'react-native';
 
 class StopWatch extends Component {
@@ -61,14 +60,18 @@ class StopWatch extends Component {
     }
 
     onButtonStart() {
+      if (!this.state.startDisabled) {
         this.start();
         this.setState({startDisabled: true, stopDisabled: false});
+      }
     }
 
 
     onButtonStop() {
+      if (!this.state.stopDisabled) {
         clearInterval(this.state.timer);
         this.setState({startDisabled: false, stopDisabled: true});
+      }
     }
 
     onButtonClear() {
@@ -120,14 +123,15 @@ const styles = StyleSheet.create({
       flex: 0.2,
       borderWidth: 1,   
       width: 250,
+      flexGrow: 1,
       justifyContent: 'center',
       backgroundColor: '#F5FCFF',
     },
     normal: {
-      fontSize: 60,
-      height: 60,
+      fontSize: 50,
+      height: 50,
       margin: 10,
-      paddingLeft: 20,
+      paddingLeft: 10,
     },
     mini: {
       fontSize:20,
