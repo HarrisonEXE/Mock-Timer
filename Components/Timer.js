@@ -3,7 +3,9 @@ import {
     StyleSheet,
     Text,
     Button,
-    View
+    View,
+    TouchableOpacity,
+    ViewPagerAndroid
 } from 'react-native';
 
 class StopWatch extends Component {
@@ -13,8 +15,8 @@ class StopWatch extends Component {
         minutes: '00',
         seconds: '00',
         miliseconds: '00',
-        startDisabled: true,
-        stopDisabled: false
+        startDisabled: false,
+        stopDisabled: true
     }
 
 
@@ -27,17 +29,9 @@ class StopWatch extends Component {
         this.start = this.start.bind(this);
     }
 
-
-
-    componentDidMount() {
-        this.start();
-    }
-
-
     componentWillUnmount() {
         clearInterval(this.state.timer);
     }
-
 
 
     start() {
@@ -66,12 +60,7 @@ class StopWatch extends Component {
         this.setState({timer});
     }
 
-
-
-
-
     onButtonStart() {
-
         this.start();
         this.setState({startDisabled: true, stopDisabled: false});
     }
@@ -82,8 +71,8 @@ class StopWatch extends Component {
         this.setState({startDisabled: false, stopDisabled: true});
     }
 
-
     onButtonClear() {
+        this.onButtonStop();
         this.setState({
             timer: null,
             minutes: '00',
@@ -91,9 +80,6 @@ class StopWatch extends Component {
             miliseconds: '00'
         });
     }
-
-
-
 
     render() {
         return(
@@ -107,14 +93,17 @@ class StopWatch extends Component {
             <View style={styles.buttonContainer}>
               <Button 
                 title="Start" 
+                style={styles.buttont}
                 onPress={() => this.onButtonStart()}
               />
               <Button 
                 title="Stop" 
+                style={styles.buttont}
                 onPress={() => this.onButtonStop()}
               />
               <Button 
                 title="Clear" 
+                style={styles.buttont}
                 onPress={() => this.onButtonClear()}
               />
             </View>
@@ -128,16 +117,17 @@ class StopWatch extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0.2,
+      borderWidth: 1,   
+      width: 250,
       justifyContent: 'center',
-      alignItems: 'center',
       backgroundColor: '#F5FCFF',
     },
     normal: {
       fontSize: 60,
-      textAlign: 'center',
       height: 60,
       margin: 10,
+      paddingLeft: 20,
     },
     mini: {
       fontSize:20,
@@ -146,7 +136,12 @@ const styles = StyleSheet.create({
       right: -50
     },
     buttonContainer: {
+      alignSelf: 'center',
       flexDirection: 'row',
+    },
+    buttont: {
+      elevation: 8,
+      backgroundColor: "#90eefc", 
     }
 });
 
