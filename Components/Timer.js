@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
       borderWidth: 1,   
       width: 250,
       flexGrow: 1,
+      margin: 3, 
       justifyContent: 'center',
       backgroundColor: '#F5FCFF',
     },
